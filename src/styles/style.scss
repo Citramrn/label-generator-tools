@@ -1,0 +1,37 @@
+body {
+    font-family: "Roboto", sans-serif !important;
+}
+
+main {
+    background-color: white;
+    font-family: "Roboto", sans-serif !important;
+}
+
+.application--wrap {
+    background-color: white;
+    font-family: "Roboto", sans-serif !important;
+}
+
+@media print {
+    .v-navigation-drawer {
+        display: none !important;
+    }
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+
+    html,
+    body {
+        margin: 0px;
+    }
+
+    @page {
+        size: auto; /* auto is the current printer page size */
+        margin: 0mm;
+    }
+
+    div {
+        page-break-inside: avoid;
+    }
+}

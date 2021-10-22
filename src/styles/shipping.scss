@@ -1,0 +1,79 @@
+.view-shipping {
+    .text-label {
+        color: #11142d;
+        font-weight: 700;
+        font-style: normal;
+    }
+    .sendrec {
+        font-weight: bold;
+        font-style: normal;
+        color: #404040;
+        text-align: center;
+    }
+
+    .text-ship {
+        font-weight: bold;
+        font-style: normal;
+        color: #383737;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        outline-color: none;
+        background-color: #f7f7fc;
+        border: 1px solid #dbd7f4;
+        border-radius: 6px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        outline-color: none;
+        padding: 12px 20px;
+        margin: 8px 0;
+        background-color: #f7f7fc;
+        border: 1px solid #dbd7f4;
+        border-radius: 6px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        outline-color: none;
+
+        background-color: #f7f7fc;
+        border: 1px solid #dbd7f4;
+        border-radius: 6px;
+    }
+
+    .package-detail {
+        margin-top: 30px !important;
+        input[type="number"]::placeholder {
+            text-align: right;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+            outline-color: none;
+            font-weight: 400;
+            font-size: 15px;
+        }
+    }
+
+    .button-ship {
+        background: linear-gradient(0deg, #3d89f8, #3d89f8);
+        color: white;
+        border: 1px solid #3d89f8;
+        border-radius: 8px;
+        text-transform: capitalize;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+    }
+}

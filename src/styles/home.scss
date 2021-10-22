@@ -1,0 +1,50 @@
+.text-jumbotron {
+    margin-top: 120px;
+    .paragraph {
+        color: #aeaeae;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .header {
+        color: #6d6363;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+    }
+}
+
+.homes {
+    box-shadow: 0px 22px 40px #f0f7ff;
+
+    .card-title {
+        font-weight: 500;
+
+        .text-card {
+            font-family: "Roboto", sans-serif;
+            color: #70a6e8;
+            font-size: 18px;
+        }
+
+        .text-cards {
+            font-family: "Roboto", sans-serif;
+            color: #aaaaaa;
+            font-size: 15px;
+        }
+    }
+
+    .btn-find {
+        background: linear-gradient(0deg, #3d89f8, #3d89f8);
+        color: white;
+        font-family: "Mulish", sans-serif;
+        font-weight: bold;
+        text-transform: capitalize;
+        margin-left: 16px;
+        margin-block-start: auto;
+        margin-bottom: 16px;
+    }
+
+    .link-router {
+        text-decoration: none;
+    }
+}

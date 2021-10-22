@@ -1,0 +1,66 @@
+.heaser-text {
+    color: #11142d;
+    font-weight: bold;
+}
+.card-container {
+    .button-ship {
+        background: linear-gradient(0deg, #3d89f8, #3d89f8);
+        color: white;
+        border: 1px solid #3d89f8;
+        border-radius: 8px;
+        text-transform: capitalize;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    border-radius: 8px 8px 0px 0px;
+    .text-label {
+        color: #11142d;
+        font-weight: 700;
+    }
+    .label-input {
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+        padding: 20px;
+        input[type="text"] {
+            width: 60%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+        }
+        .v-btn--floating {
+            height: 47px;
+            min-width: 0;
+            padding: 0;
+            width: 56px;
+            border-radius: 8px;
+        }
+        .fa-trash {
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    }
+}
+#table-output {
+    display: none;
+    height: 1px;
+    font-size: 1px;
+    letter-spacing: 0em;
+}
+.button-sku {
+    background: linear-gradient(0deg, #3d89f8, #3d89f8);
+    color: white;
+    border: 1px solid #3d89f8;
+    border-radius: 8px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 500;
+    float: right;
+    font-size: 16px;
+}
