@@ -79,13 +79,13 @@
             <span class="output-print" ref="printSix">{{ date }}</span>
 
             <div class="mt-3">
-              <svg ref="brcode" id="itf" />
+              <svg style="display: none" ref="brcode" id="itf" />
             </div>
           </div>
         </v-flex>
 
         <v-flex xs12 sm6>
-          <div class="mt-3" ref="content">
+          <div class="mt-3 pack-resi" ref="content">
             <label class="text-label" for="fname">No. resi</label>
             <input type="text" v-model="barcodes" id="resi" name="fname" />
             <span class="output-print" ref="load">{{ barcodes }}</span>

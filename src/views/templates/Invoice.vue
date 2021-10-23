@@ -317,7 +317,7 @@
                   @click="print"
                   :disabled="!isFormValid"
                   large
-                  color="btn-invoice"
+                  class="btn-invoice"
                   >Generate</v-btn
                 >
               </div>
@@ -329,6 +329,7 @@
   </v-app>
 </template>
 
+
 <script>
 export default {
   name: "",
@@ -337,18 +338,15 @@ export default {
       invoice: [{ description: "", quantity: 0, price: 0 }],
       pricep: {
         code: "",
-        mark: 0,
-        rate: 0,
         description: "",
-        grain: 0,
         namePenerima: "",
         namePengirim: "",
         address: "",
         tanggalBayar: "",
         batasWaktu: "",
         notes: "",
-        taxRate: 0,
-        discountRate: 0,
+        taxRate: 0.0,
+        discountRate: 0.0,
         shipRate: 0,
       },
       inputHeight: "0",
@@ -412,10 +410,11 @@ export default {
       return total;
     },
     grandTotal() {
-      const total =
+      const totals = Math.ceil(
         (this.subTotal - this.discountTotal + this.taxTotal + this.shipTotal) /
-        2;
-      return total;
+          2
+      );
+      return totals;
     },
   },
   methods: {
@@ -472,20 +471,20 @@ export default {
           <table style="width:100%">
             <tr>
               <td style="width:70%"></td>
-              <td><b>Kode Invoice : </b>
+              <td style="float: right;"><b>Kode Invoice : </b>
       `);
       newWin.document.write(divToPrinta.outerHTML);
       newWin.document.write(`</td>
             </tr>
             <tr>
               <td style="width:70%"></td>
-              <td><b>Tanggal Bayar : </b>`);
+              <td style="float: right;"><b>Tanggal Bayar : </b>`);
       newWin.document.write(divToPrinte.outerHTML);
       newWin.document.write(`</td>
             </tr>
             <tr>
               <td style="width:70%"></td>
-              <td><b>Batas Waktu : </b>`);
+              <td style="float: right;"><b>Batas Waktu : </b>`);
       newWin.document.write(divToPrintf.outerHTML);
       newWin.document.write(`</td>
             </tr>
@@ -527,31 +526,31 @@ export default {
             </tr>
             <tr>
               <td></td>
-              <td><b>Subtotal : </b>Rp.`);
+              <td style="float: right;"><b>Subtotal : </b>Rp.`);
       newWin.document.write(divToPrinti.outerHTML);
       newWin.document.write(`</td>
             </tr>
             <tr>
               <td style="width:50%"></td>
-              <td><b>Diskon : </b>`);
+              <td style="float: right;"><b>Diskon : </b>`);
       newWin.document.write(divToPrintj.outerHTML);
       newWin.document.write(` %</td>
             </tr>
             <tr>
               <td style="width:50%"></td>
-              <td><b>Pajak : </b>`);
+              <td style="float: right;"><b>Pajak : </b>`);
       newWin.document.write(divToPrintk.outerHTML);
       newWin.document.write(` %</td>
             </tr>
             <tr>
               <td style="width:50%"></td>
-              <td><b>Ongkos Kirim : </b>Rp.`);
+              <td style="float: right;"><b>Ongkos Kirim : </b>Rp.`);
       newWin.document.write(divToPrintl.outerHTML);
       newWin.document.write(`</td>
               </tr>
               <tr>
                 <td style="width:50%"></td>
-                <td><b>Total Bayar : </b>Rp.`);
+                <td style="float: right;"><b>Total Bayar : </b>Rp.`);
       newWin.document.write(divToPrintm.outerHTML);
       newWin.document.write(`</td></tr></table>
           </body>
@@ -568,3 +567,6 @@ export default {
 <style scoped lang="scss">
 @import "../../styles/invoice.scss";
 </style>
+
+
+
