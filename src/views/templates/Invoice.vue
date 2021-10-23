@@ -265,6 +265,7 @@
                   <input
                     type="number"
                     id="fname"
+                    step="0.01"
                     name="fname"
                     v-model="pricep.discountRate"
                   />
@@ -278,6 +279,7 @@
                   <input
                     type="number"
                     id="fname"
+                    step="0.01"
                     name="fname"
                     v-model="pricep.taxRate"
                   />
