@@ -16,17 +16,21 @@
               name="fname"
               validation="required"
             />
+            <span class="output-print" ref="printOne">{{ receiver.name }}</span>
 
             <div class="mt-3">
               <label class="text-label" for="fname">Alamat</label>
-              <input
+              <textarea
                 type="text"
                 v-model="receiver.address"
                 placeholder="Blitar, Jawa Timur - Indonesia"
                 id="fname"
                 name="fname"
                 validation="required"
-              />
+              ></textarea>
+              <span class="output-print" ref="printTwo">{{
+                receiver.address
+              }}</span>
             </div>
           </div>
         </v-flex>
@@ -42,15 +46,19 @@
               id="fname"
               name="fname"
             />
+            <span class="output-print" ref="printThree">{{ sender.name }}</span>
             <div class="mt-3">
               <label class="text-label" for="fname">Alamat</label>
-              <input
+              <textarea
                 type="text"
                 v-model="sender.address"
                 placeholder="Malang, Jawa Timur - Indonesia"
                 id="fname"
                 name="fname"
-              />
+              ></textarea>
+              <span class="output-print" ref="printFour">{{
+                sender.address
+              }}</span>
             </div>
           </div>
         </v-flex>
@@ -68,9 +76,10 @@
               max="2090-12-31"
               v-model="date"
             />
+            <span class="output-print" ref="printSix">{{ date }}</span>
 
             <div class="mt-3">
-              <img style="display: none" id="itf" />
+              <svg ref="brcode" id="itf" />
             </div>
           </div>
         </v-flex>
@@ -79,30 +88,31 @@
           <div class="mt-3" ref="content">
             <label class="text-label" for="fname">No. resi</label>
             <input type="text" v-model="barcodes" id="resi" name="fname" />
-
+            <span class="output-print" ref="load">{{ barcodes }}</span>
             <div class="mt-3">
               <label class="text-label" for="fname">Berat Paket</label>
               <input
                 type="number"
                 class="kilograms"
                 v-model="heavy"
+                step="0.01"
                 placeholder="Kg"
                 id="fname"
                 name="fname"
                 validation="required"
               />
+              <span class="output-print" ref="printFive">{{ heavy }}</span>
             </div>
           </div>
         </v-flex>
       </v-layout>
-
       <div class="text-xs-right">
         <v-btn
           @click="download"
+          :disabled="!isFormValid"
           class="button-ship"
           depressed
           large
-          :disabled="!isFormValid"
           >Generate</v-btn
         >
       </div>
@@ -111,14 +121,6 @@
 </template>
 
 <script>
-import { jsPDF } from "jspdf";
-// eslint-disable-next-line import/extensions
-import "../../plugins/Roboto-Black-normal.js";
-// eslint-disable-next-line import/extensions
-import "../../plugins/Roboto-Bold-normal.js";
-// eslint-disable-next-line import/extensions
-import "../../plugins/Roboto-Regular-normal.js";
-
 export default {
   name: "Shipping",
   data() {
@@ -173,60 +175,116 @@ export default {
       localStorage.weight = this.heavy;
       localStorage.barcodes = this.barcodes;
 
-      const doc = new jsPDF({
-        orientation: "l",
-        unit: "mm",
-        format: [105, 148],
-      });
+      const divToPrinta = this.$refs.printOne;
+      const divToPrintb = this.$refs.printTwo;
+
+      const divToPrintc = this.$refs.printThree;
+      const divToPrintd = this.$refs.printFour;
+
+      const divToPrinte = this.$refs.printFive;
+      const divToPrintf = this.$refs.printSix;
+
+      // const divToPrintBarcode = this.$refs.load; // no rresi
+      const divToPrintBrcode = this.$refs.brcode; // barcode
       const JsBarcode = require("jsbarcode");
-      const img = document.querySelector("img#itf");
 
       JsBarcode("#itf", this.barcodes, {
         format: "CODE128",
         width: "2",
-        height: "50",
+        height: "60",
       });
 
-      doc.addFont("Roboto-Black-normal.ttf", "Roboto-Black", "normal");
-      doc.addFont("Roboto-Bold-normal.ttf", "Roboto-Bold", "normal");
-      doc.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
+      const newWin = window.open(
+        ("PrintWindow", "width=750,height=650,top=50,left=50")
+      );
+      // start print
+      newWin.document.writeln(`
+      <!DOCTYPE html>
+        <head>
+          <style>
+            body {
+            font-family: Roboto;
+            }
+            h1 {
+              color: black;
+            }
+            p {
+            color: black;
+            font-size: 17px;
+              }
+          </style>
+        </head>
 
-      doc.addImage(img.src, "JPEG", 67, 5, 73, 24);
+        <body>
+          <table style="border: 2px solid black; padding: 10px;">
+            <tbody>
+              <tr>
+                <td>
+                  <h1>Inskuship</h1>
+                  <h2>Pengirim</h2>
+                  <p>Nama :
+                  `);
+      newWin.document.write(divToPrinta.outerHTML);
+      newWin.document.writeln(`
+                    <br>
+                    Alamat :
+      `);
+      newWin.document.write(divToPrintb.outerHTML);
+      newWin.document.writeln(`
+                  </p>
+                </td>
+           </tr>
+           <tr>
+             <td colspan="5">
+      `);
+      // newWin.document.write(divToPrintBarcode.outerHTML);
+      newWin.document.writeln(`
+              <img />
+      `);
+      newWin.document.write(divToPrintBrcode.outerHTML);
+      newWin.document.writeln(`
+              </td>
+            </tr>
+            <tr>
+             <td>
+               <h2>Penerima</h2>
+                <p>Nama :
+      `);
+      newWin.document.write(divToPrintc.outerHTML);
+      newWin.document.writeln(`
+                <br>
+                Alamat :
+      `);
+      newWin.document.write(divToPrintd.outerHTML);
+      newWin.document.writeln(`
+                </p>
+               </td>
+             </tr>
+             <tr>
+               <td colspan="2">
+                <p>
+                  Berat Paket :
+                  `);
+      newWin.document.write(divToPrinte.outerHTML);
+      newWin.document.writeln(`
+                  Kg
+                  <br>
+                  Tanggal :
+            `);
+      newWin.document.write(divToPrintf.outerHTML);
+      newWin.document.writeln(`
+                </p>
+                </td>
+              </tr>
+           </tbody>
+         </table>
+      </body>
+    </html>`);
 
-      doc.setFont("Roboto-Black", "normal");
-      doc.setFontSize(32);
-      doc.setTextColor(100);
-      doc.text(10, 20, "Inskuship");
+      newWin.print();
 
-      doc.setFontSize(9);
-      doc.setTextColor(0);
-      doc.setFont("Roboto-Bold", "normal");
-      doc.text("Penerima :", 10, 40);
-      doc.setFont("Roboto-Regular", "normal");
-      doc.text(this.receiver.name, 10, 47);
-      doc.text(this.receiver.address, 10, 54);
-
-      doc.setFillColor(100);
-      doc.rect(10, 61, 127, 0.2, "F");
-
-      doc.setTextColor(0);
-      doc.setFont("Roboto-Bold", "normal");
-      doc.text("Pengirim :", 10, 70);
-      doc.setFont("Roboto-Regular", "normal");
-      doc.text(this.sender.name, 10, 77);
-      doc.text(this.sender.address, 10, 84);
-
-      doc.setFillColor(100);
-      doc.rect(10, 91, 127, 0.2, "F");
-
-      doc.setFontSize(12);
-      doc.setTextColor(0);
-      doc.setFont("helvetica", "bold");
-      doc.text(`Tanggal : ${this.date}`, 10, 100);
-      doc.text(`${this.heavy} kg`, 138, 100, "right");
-
-      doc.autoPrint({ variant: "non-confirm" });
-      doc.save("shipping-form.pdf");
+      return true;
+      // end start print
     },
   },
 };

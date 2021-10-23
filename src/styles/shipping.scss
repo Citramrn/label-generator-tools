@@ -43,12 +43,21 @@
         border-radius: 6px;
     }
 
+    textarea[type="text"] {
+        width: 100%;
+        outline-color: none;
+        padding: 12px 20px;
+        margin: 8px 0;
+        background-color: #f7f7fc;
+        border: 1px solid #dbd7f4;
+        border-radius: 6px;
+    }
+
     input[type="date"] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         outline-color: none;
-
         background-color: #f7f7fc;
         border: 1px solid #dbd7f4;
         border-radius: 6px;
@@ -71,9 +80,16 @@
         color: white;
         border: 1px solid #3d89f8;
         border-radius: 8px;
+        margin-top: -80px;
         text-transform: capitalize;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
     }
+}
+
+// print
+
+.output-print {
+    display: none;
 }

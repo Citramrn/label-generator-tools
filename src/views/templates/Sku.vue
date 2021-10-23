@@ -198,8 +198,6 @@
 </template>
 
 <script>
-import VueBarcode from "vue-barcode";
-
 export default {
   name: "sku",
   data() {
