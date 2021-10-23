@@ -61,13 +61,13 @@
             <v-flex xs12 sm12>
               <div ref="content">
                 <label class="text-label" for="fname">Alamat Penerima</label>
-                <input
+                <textarea
                   placeholder="Blitar, Jawa Timur - Indonesia"
                   type="text"
                   id="fname"
                   name="fname"
                   v-model="pricep.address"
-                />
+                ></textarea>
                 <span id="phone-output" ref="printTable4">{{
                   pricep.address
                 }}</span>
