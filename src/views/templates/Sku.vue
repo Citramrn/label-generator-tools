@@ -82,10 +82,10 @@
       </div>
     </v-card>
     <!-- v-if="select === item.id" id="cekboks" || start tabel print display none -->
-    <!-- :disabled="!isFormValid || (this.varian.id === 5)"  -->
+    <!-- :disabled="!isFormValid || (this.varian.id === 5)" || width: 50%; -->
     <div id="table-output" ref="genLabel">
       <table
-        style="width: 50%; border: 1px solid black"
+        style="border: 1px solid black"
         v-for="(item, k) in items"
         :key="k"
       >
@@ -97,13 +97,13 @@
               </span>
               <span v-else-if="!item.varianThree">
                 {{
-                  "SKU : " +
+                  "Produk : " +
                   [item.name, item.varianOne, item.varianTwo].join("-")
                 }}
               </span>
               <span v-else>
                 {{
-                  "SKU : " +
+                  "Produk : " +
                   [
                     item.name,
                     item.varianOne,
@@ -272,7 +272,7 @@
       v-model="selected"
       :headers="headers"
       :items="items"
-      class="elevation-1 mt-5 blue darken-1 black--text"
+      class="elevation-1 mt-5"
     >
       <template slot="items" slot-scope="props">
         <tr :active="props.selected" @click="props.selected = !props.selected">
@@ -318,7 +318,12 @@
       </template>
     </v-data-table>
     <!-- :disabled="!(this.varian.id === 3)" || end tabel utama -->
-    <v-btn class="button-sku mt-4" @click="download" depressed large
+    <v-btn
+      class="button-sku mt-4"
+      @click="download"
+      :disabled="!(this.varian.id === 5)"
+      depressed
+      large
       >Generate Label
     </v-btn>
   </v-container>
@@ -333,12 +338,12 @@ export default {
       disableBtnFlagB: false,
       isShowingA: false,
       isShowingB: false,
-      barcodes: "",
       cntA: 0,
       cntB: 0,
       selected: [],
       items: [],
       varian: {
+        id: 0,
         name: "",
         varianOne: "",
         varianTwo: "",
@@ -348,26 +353,32 @@ export default {
         {
           text: "Nama Produk",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
         {
           text: "Varian 1",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
         {
           text: "Varian 2",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
         {
           text: "Varian 3",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
         {
           text: "SKU Generator",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
         {
           text: "Actions",
           sortable: false,
+          class: "blue darken-1 white--text",
         },
       ],
     };
@@ -405,6 +416,7 @@ export default {
       const generateOne = this.varian.varianOne;
       const generateTwo = this.varian.varianTwo;
       const generateThree = this.varian.varianThree;
+      this.varian.id++;
       this.items.push({
         name: this.varian.name,
         varianOne: this.varian.varianOne,
@@ -422,6 +434,7 @@ export default {
       const message = confirm("Anda yakin ingin menghapus?");
       if (message) {
         this.items.splice(index, 1);
+        this.varian.id--;
         localStorage.setItem("items", JSON.stringify(this.items));
       }
     },
