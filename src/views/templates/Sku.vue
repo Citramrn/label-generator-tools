@@ -81,119 +81,246 @@
         >
       </div>
     </v-card>
-    <!-- start tabel print display none -->
+    <!-- v-if="select === item.id" id="cekboks" || start tabel print display none -->
+    <!-- :disabled="!isFormValid || (this.varian.id === 5)"  -->
     <div id="table-output" ref="genLabel">
       <table
-        style="width: 50%; border: 1px solid #ddd"
-        id="cekboks"
+        style="width: 50%; border: 1px solid black"
         v-for="(item, k) in items"
         :key="k"
       >
-        <tbody v-if="select === item.id">
+        <tbody>
           <tr>
             <td>
-              <span
-                >{{
-                  "Produk : " +
-                  item.name +
-                  "/" +
-                  item.varianOne +
-                  "/" +
-                  item.varianTwo +
-                  "/" +
-                  item.varianThree
-                }}
+              <span v-if="!item.varianTwo && !item.varianThree">
+                {{ "Produk : " + [item.name, item.varianOne].join("-") }}
               </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span
-                >{{
+              <span v-else-if="!item.varianThree">
+                {{
                   "SKU : " +
-                  item.generates +
-                  "/" +
-                  item.generateOne +
-                  "/" +
-                  item.generateTwo +
-                  "/" +
-                  item.generateThree
+                  [item.name, item.varianOne, item.varianTwo].join("-")
                 }}
               </span>
-            </td>
-          </tr>
-          <tr style="display: none">
-            <td>
-              <span id="ambilkan"
-                >{{
-                  item.generates +
-                  "-" +
-                  item.generateOne +
-                  "-" +
-                  item.generateTwo +
-                  "-" +
-                  item.generateThree
+              <span v-else>
+                {{
+                  "SKU : " +
+                  [
+                    item.name,
+                    item.varianOne,
+                    item.varianTwo,
+                    item.varianThree,
+                  ].join("-")
                 }}
               </span>
             </td>
           </tr>
           <tr>
             <td>
-              <svg ref="load"></svg>
+              <span v-if="!item.generateTwo && !item.generateThree">
+                {{ "SKU : " + [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span v-else-if="!item.generateThree">
+                {{
+                  "SKU : " +
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span v-else>
+                {{
+                  "SKU : " +
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+          </tr>
+          <tr v-if="k === 0">
+            <td style="display: none; width: 0%">
+              <span id="ambila" v-if="!item.generateTwo && !item.generateThree">
+                {{ [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span id="ambila" v-else-if="!item.generateThree">
+                {{
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span id="ambila" v-else>
+                {{
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+            <td style="width: 100%">
+              <svg ref="loada"></svg>
+            </td>
+          </tr>
+          <tr v-else-if="k === 1">
+            <td style="display: none; width: 0%">
+              <span id="ambilb" v-if="!item.generateTwo && !item.generateThree">
+                {{ [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span id="ambilb" v-else-if="!item.generateThree">
+                {{
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span id="ambilb" v-else>
+                {{
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+            <td style="width: 100%">
+              <svg ref="loadb"></svg>
+            </td>
+          </tr>
+          <tr v-else-if="k === 2">
+            <td style="display: none; width: 0%">
+              <span id="ambilc" v-if="!item.generateTwo && !item.generateThree">
+                {{ [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span id="ambilc" v-else-if="!item.generateThree">
+                {{
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span id="ambilc" v-else>
+                {{
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+            <td style="width: 100%">
+              <svg ref="loadc"></svg>
+            </td>
+          </tr>
+          <tr v-else-if="k === 3">
+            <td style="display: none; width: 0%">
+              <span id="ambild" v-if="!item.generateTwo && !item.generateThree">
+                {{ [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span id="ambild" v-else-if="!item.generateThree">
+                {{
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span id="ambild" v-else>
+                {{
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+            <td style="width: 100%">
+              <svg ref="loadd"></svg>
+            </td>
+          </tr>
+          <tr v-else-if="k === 4">
+            <td style="display: none; width: 0%">
+              <span id="ambile" v-if="!item.generateTwo && !item.generateThree">
+                {{ [item.generates, item.generateOne].join("-") }}
+              </span>
+              <span id="ambile" v-else-if="!item.generateThree">
+                {{
+                  [item.generates, item.generateOne, item.generateTwo].join("-")
+                }}
+              </span>
+              <span id="ambile" v-else>
+                {{
+                  [
+                    item.generates,
+                    item.generateOne,
+                    item.generateTwo,
+                    item.generateThree,
+                  ].join("-")
+                }}
+              </span>
+            </td>
+            <td style="width: 100%">
+              <svg ref="loade"></svg>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
     <!-- end tabel print display none -->
-
     <!-- start tabel utama -->
-
     <v-data-table
       v-model="selected"
       :headers="headers"
       :items="items"
-      select-all
       class="elevation-1 mt-5 blue darken-1 black--text"
     >
       <template slot="items" slot-scope="props">
         <tr :active="props.selected" @click="props.selected = !props.selected">
-          <td>
-            <v-checkbox
-              v-model="props.selected"
-              @click="select = props.item.id"
-              primary
-              hide-details
-            ></v-checkbox>
-          </td>
-          <td style="display: none">{{ props.item.id }}</td>
           <td class="text-xs-left">{{ props.item.name }}</td>
           <td class="text-xs-left">{{ props.item.varianOne }}</td>
           <td class="text-xs-left">{{ props.item.varianTwo }}</td>
           <td class="text-xs-left">{{ props.item.varianThree }}</td>
           <td>
-            {{
-              props.item.generates +
-              "/" +
-              props.item.generateOne +
-              "/" +
-              props.item.generateTwo +
-              "/" +
-              props.item.generateThree
-            }}
+            <span v-if="!props.item.generateTwo && !props.item.generateThree">
+              {{ [props.item.generates, props.item.generateOne].join("-") }}
+            </span>
+            <span v-else-if="!props.item.generateThree">
+              {{
+                [
+                  props.item.generates,
+                  props.item.generateOne,
+                  props.item.generateTwo,
+                ].join("-")
+              }}
+            </span>
+            <span v-else>
+              {{
+                [
+                  props.item.generates,
+                  props.item.generateOne,
+                  props.item.generateTwo,
+                  props.item.generateThree,
+                ].join("-")
+              }}
+            </span>
           </td>
-          <td class="justify-center layout px-0">
-            <v-icon small @click="deleteItem(props.item)" color="error">
+          <td class="text-xs-left layout px-4">
+            <v-icon
+              class="text-xs-left"
+              small
+              @click="deleteItem(props.item)"
+              color="error"
+            >
               delete
             </v-icon>
           </td>
         </tr>
       </template>
     </v-data-table>
-    <!-- end tabel utama -->
+    <!-- :disabled="!(this.varian.id === 3)" || end tabel utama -->
     <v-btn class="button-sku mt-4" @click="download" depressed large
-      >Generate Label</v-btn
-    >
+      >Generate Label
+    </v-btn>
   </v-container>
 </template>
 
@@ -212,7 +339,6 @@ export default {
       selected: [],
       items: [],
       varian: {
-        id: 0,
         name: "",
         varianOne: "",
         varianTwo: "",
@@ -279,9 +405,7 @@ export default {
       const generateOne = this.varian.varianOne;
       const generateTwo = this.varian.varianTwo;
       const generateThree = this.varian.varianThree;
-      this.varian.id = ++this.varian.id;
       this.items.push({
-        id: this.varian.id,
         name: this.varian.name,
         varianOne: this.varian.varianOne,
         varianTwo: this.varian.varianTwo,
@@ -292,7 +416,6 @@ export default {
         generateThree: generateThree.substring(0, 3),
       });
     },
-    select() {},
     deleteItem(item) {
       const index = this.items.indexOf(item);
       // eslint-disable-next-line no-alert
@@ -313,38 +436,55 @@ export default {
       this.cntB = 0;
     },
     download() {
-      const x = document.getElementById("table-output");
-      const bom = x.querySelector("#ambilkan").innerHTML;
+      const xz = document.getElementById("table-output");
+      const boma = xz.querySelector("#ambila").innerHTML;
+      const bomb = xz.querySelector("#ambilb").innerHTML;
+      const bomc = xz.querySelector("#ambilc").innerHTML;
+      const bomd = xz.querySelector("#ambild").innerHTML;
+      const bome = xz.querySelector("#ambile").innerHTML;
 
       const JsBarcode = require("jsbarcode");
-      JsBarcode(
-        this.$refs.load,
-        bom,
-        /* this.varian.name.substring(0, 3) +
-        this.varian.varianOne.substring(0, 3) +
-        this.varian.varianTwo.substring(0, 3) +
-        this.varian.varianThree.substring(0, 3), */
-        {
-          width: "1",
-          height: "90",
-          textAlign: "left",
-          format: "CODE128",
-        }
-      );
+      JsBarcode(this.$refs.loada, boma, {
+        width: "1",
+        height: "90",
+        textAlign: "left",
+      });
+      JsBarcode(this.$refs.loadb, bomb, {
+        width: "1",
+        height: "90",
+        textAlign: "left",
+      });
+      JsBarcode(this.$refs.loadc, bomc, {
+        width: "1",
+        height: "90",
+        textAlign: "left",
+      });
+      JsBarcode(this.$refs.loadd, bomd, {
+        width: "1",
+        height: "90",
+        textAlign: "left",
+      });
+      JsBarcode(this.$refs.loade, bome, {
+        width: "1",
+        height: "90",
+        textAlign: "left",
+      });
+
       const divToPrint1 = this.$refs.genLabel;
       const newWin = window.open();
       newWin.document.writeln(`
       <!DOCTYPE html>
         <head>
-          <style>
+           <style>
             body {
-            font-family:helvetica;
+            font-family: Roboto;
             }
             h1 {
               color: black;
             }
             p {
-            color: #FFFFFF;
+            color: black;
+            font-size : 17px;
               }
           </style>
         </head>

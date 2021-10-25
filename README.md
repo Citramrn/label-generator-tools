@@ -1,6 +1,6 @@
-# TabelCRUDVueJs
+# Label generator tool
 
-Membuat Tabel CRUD VUE CLI dengan Framework Bootstrap v.5
-dengan API : https://jsonplaceholder.typicode.com/users
+Membuat label generator tool dengan framework vuetify
 
-* Link Demo : https://tabelcrud.netlify.app/
+* Link Demo : https://labelgenerator.netlify.app
+
