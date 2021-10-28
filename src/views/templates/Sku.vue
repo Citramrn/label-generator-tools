@@ -73,7 +73,7 @@
         <v-btn class="button-ship" @click="reset" depressed large>Reset</v-btn>
         <v-btn
           @click="addTabel"
-          :disabled="!isFormValid"
+          :disabled="!isFormValid || this.varian.id === 5"
           class="button-ship"
           depressed
           large
@@ -85,7 +85,7 @@
     <!-- :disabled="!isFormValid || (this.varian.id === 5)" || width: 50%; -->
     <div id="table-output" ref="genLabel">
       <table
-        style="border: 1px solid black"
+        style="border: 1px solid black; width: 40%"
         v-for="(item, k) in items"
         :key="k"
       >
@@ -304,9 +304,9 @@
               }}
             </span>
           </td>
-          <td class="text-xs-left layout px-4">
+          <td class="layout" align-center>
             <v-icon
-              class="text-xs-left"
+              align-center
               small
               @click="deleteItem(props.item)"
               color="error"
@@ -317,6 +317,7 @@
         </tr>
       </template>
     </v-data-table>
+
     <!-- :disabled="!(this.varian.id === 3)" || end tabel utama -->
     <v-btn
       class="button-sku mt-4"
