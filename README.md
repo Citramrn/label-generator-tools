@@ -55,7 +55,7 @@ Script
 
 - Instagram : [@citramirna](https://www.instagram.com/citramirna)
 - WhatsApp : [+62 877 5442 1765](https://wa.me/6287754421765)
-- Email : [come.programmer@gmail.com](mailto:ctrmirna@gmail.com)
+- Email : [ctrmirna@gmail.com](mailto:ctrmirna@gmail.com)
 
 ---
 ###### tags: `Vue Js` `LocalStorage` `Js Barcode` `Vuetify` `ESlint` 
